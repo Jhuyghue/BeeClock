@@ -40,4 +40,4 @@ python beeclock.py
 [**Pywin32:**](https://github.com/mhammond/pywin32.git) a Python library that allows use for Windows API. 
 
 ## Contribution
-I'm always welcome to any suggestions, information about bugs, or people who want to contribute to this project. If you have any issues or any ideas, you can contact me on my Discord (njp1672) and feel free to ask any questions.
+I'm always welcome to any suggestions, information about bugs, or people who want to contribute to this project. If you have any issues or any ideas, you can contact me on my Discord (njp1672) and feel free to ask any questions. <br> *All sprites and any repspective rights belong to the Konami Group Corporation.*
