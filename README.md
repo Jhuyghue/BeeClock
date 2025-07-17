@@ -4,7 +4,7 @@
 
 
 ## BeeClock
-BeeClock is a desktop clock software based on the TwinBee PARADISE in Donburi Island clocks!<br>
+**BeeClock** is the reverse engineering of desktop clock widgets based on the TwinBee PARADISE in Donburi Island clocks!<br>
 <img src="https://github.com/Jhuyghue/BeeClock/blob/main/images/Screenshot%202025-07-12%20232144.png" width=256 height=256>
 <img src="https://github.com/Jhuyghue/BeeClock/blob/main/images/Screenshot%202025-07-12%20202312.png" width=256 height=256>
 <img src="https://github.com/Jhuyghue/BeeClock/blob/main/images/Screenshot%202025-07-13%20032357.png" width=256 height=256>
