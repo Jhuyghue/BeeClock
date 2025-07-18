@@ -1,7 +1,5 @@
-import sys
 import pygame as pyg
 import win32gui, win32api, win32con
-#Date Time is used for tracking real time and providing the current time.
 import datetime
 from math import pi, cos, sin
 pyg.init()
@@ -19,31 +17,27 @@ ico = pyg.image.load("assets/Icon.png").convert_alpha()
 pyg.display.set_icon(ico)
 
 #WIN32API to make a transparent background
-magenta = (255,0,255)
-hwnd = pyg.display.get_wm_info()["window"]
+hwnd = pyg.display.get_wm_info().get("window")
 win32gui.SetWindowLong(hwnd, win32con.GWL_EXSTYLE, win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE) | win32con.WS_EX_LAYERED)
-win32gui.SetLayeredWindowAttributes(hwnd, win32api.RGB(*magenta), 0, win32con.LWA_COLORKEY)
+win32gui.SetLayeredWindowAttributes(hwnd, win32api.RGB(255,0,255), 0, win32con.LWA_COLORKEY)
+
 #Making a list to add the clock sprites
-clock_themes = [
-    {
+clock_themes = [{
     "main": pyg.image.load('assets/MADO.png').convert_alpha(),
     "center": pyg.image.load('assets/MADO_C.png').convert_alpha(),
     "hour_hand": pyg.image.load('assets/MADO_HOUR.png').convert_alpha(),
     "minute_hand": pyg.image.load('assets/MADO_MIN.png').convert_alpha()
     },
-    {
-    "main": pyg.image.load('assets/PAST.png').convert_alpha(),
+    {"main": pyg.image.load('assets/PAST.png').convert_alpha(),
     "center": pyg.image.load('assets/PAST_C.png').convert_alpha(),
     "hour_hand": pyg.image.load('assets/PAST_HOUR.png').convert_alpha(),
     "minute_hand": pyg.image.load('assets/PAST_MIN.png').convert_alpha()
-    },
-    {
-    "main": pyg.image.load('assets/MEL.png').convert_alpha(),
+     },
+    {"main": pyg.image.load('assets/MEL.png').convert_alpha(),
     "center": pyg.image.load('assets/MEL_C.png').convert_alpha(),
     "hour_hand": pyg.image.load('assets/MEL_HOUR.png').convert_alpha(),
-    "minute_hand": pyg.image.load('assets/MEL_MIN.png').convert_alpha()
-    }
-]
+    "minute_hand": pyg.image.load('assets/MEL_MIN.png').convert_alpha()}]
+
 current_theme_index = 0 #Controlling the index of the theme
 borderless = False #Keeping track if the border is on or not
 
@@ -77,11 +71,8 @@ while running:
             flags = pyg.NOFRAME if borderless else 0
             SCR = pyg.display.set_mode((width, height), flags)
 
+    #Keeping the index of the themes
     theme = clock_themes[current_theme_index]
-
-    #bliting the obj to display
-    SCR.fill(magenta)
-    SCR.blit(theme["main"], (0, 0))
 
     # Using the datetime module to make the hands
     current_time = datetime.datetime.now()
@@ -92,7 +83,6 @@ while running:
     #Code for the second hand
     sec_length = 120 #Length of the second hand
     sec_angle =  second * (360 / 60) #Speed/frames of the hand
-    pyg.draw.line(SCR, WHITE, center, polar_to_cart(sec_length, sec_angle), 1)
 
     # Code for the MINUTE hand
     min_angle = (minute + second / 60) * (360 / 60)
@@ -105,11 +95,13 @@ while running:
     hour_rect = rotated_hour.get_rect(center=center)
 
     #Bliting the hands of the clock
+    SCR.fill((255,0,255))
+    SCR.blit(theme["main"], (0, 0))
     SCR.blit(rotated_hour, hour_rect)
     SCR.blit(rotated_min, min_rect)
+    pyg.draw.line(SCR, WHITE, center, polar_to_cart(sec_length, sec_angle), 1)
     SCR.blit(theme["center"], (140,140))
     pyg.display.flip()
     clock.tick(60)
 
 pyg.quit()
-sys.exit()
